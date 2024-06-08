@@ -1,0 +1,66 @@
+﻿@page
+@model AsystentKonserwacji.Pages.Machines.DetailsModel
+@{
+    ViewData["Title"] = "Machine Details";
+}
+
+<h2>Machine Details</h2>
+
+<div>
+    <h4>Machine</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Machine.Name
+        </dd>
+        <dt class="col-sm-2">
+            Description
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Machine.Description
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <h4>Lubrication Points</h4>
+    @if (Model.Machine.LubricationPoints != null && Model.Machine.LubricationPoints.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Point Name</th>
+                    <th>Description</th>
+                    <th>Interval</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var point in Model.Machine.LubricationPoints)
+                {
+                    <tr>
+                        <td>@point.Name</td>
+                        <td>@point.Description</td>
+                        <td>@point.Interval</td>
+                        <td>
+                            <a asp-page="/LubricationPoints/Edit" asp-route-id="@point.Id" class="btn btn-primary">Edit</a>
+                            <a asp-page="/LubricationPoints/Details" asp-route-id="@point.Id" class="btn btn-info">Details</a>
+                            <a asp-page="/LubricationPoints/Delete" asp-route-id="@point.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No lubrication points found for this machine.</p>
+    }
+    <a asp-page="/LubricationPoints/Create" asp-route-machineId="@Model.Machine.Id" class="btn btn-success">Add Lubrication Point</a>
+</div>
+
+<a asp-page="./Edit" asp-route-id="@Model.Machine.Id" class="btn btn-primary">Edit</a>
+<a asp-page="./Index" class="btn btn-secondary">Back to List</a>

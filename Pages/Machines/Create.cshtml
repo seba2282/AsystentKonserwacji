@@ -1,0 +1,17 @@
+﻿@page
+@model CreateMachineModel
+
+<h2>Dodaj Nową Maszynę</h2>
+
+<form method="post">
+    <div>
+        <label for="Name">Nazwa</label>
+        <input type="text" id="Name" name="Machine.Name" />
+    </div>
+    <div>
+        <label for="Description">Opis</label>
+        <textarea id="Description" name="Machine.Description"></textarea>
+    </div>
+    <button type="submit">Dodaj</button>
+</form>
+<a href="/Machines">Wróć do listy maszyn</a>

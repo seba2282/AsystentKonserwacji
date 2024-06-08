@@ -1,0 +1,30 @@
+﻿@page
+@model AsystentKonserwacji.Pages.Machines.MachineIndexModel
+
+<h2>Machines</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var machine in Model.Machines)
+        {
+            <tr>
+                <td>@machine.Name</td>
+                <td>@machine.Description</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@machine.Id" class="btn btn-primary">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@machine.Id" class="btn btn-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@machine.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="./Create" class="btn btn-success">Create New Machine</a>

@@ -1,0 +1,45 @@
+﻿@page
+@model AsystentKonserwacji.Pages.LubricationPoints.EditModel
+@{
+    ViewData["Title"] = "Edit Lubrication Point";
+}
+
+<h2>Edit Lubrication Point</h2>
+
+<h4>LubricationPoint</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="LubricationPoint.Name" class="control-label"></label>
+                <input asp-for="LubricationPoint.Name" class="form-control" />
+                <span asp-validation-for="LubricationPoint.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LubricationPoint.Description" class="control-label"></label>
+                <input asp-for="LubricationPoint.Description" class="form-control" />
+                <span asp-validation-for="LubricationPoint.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LubricationPoint.Interval" class="control-label"></label>
+                <input asp-for="LubricationPoint.Interval" class="form-control" />
+                <span asp-validation-for="LubricationPoint.Interval" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="LubricationPoint.MachineId" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Machines/Details" asp-route-id="@Model.LubricationPoint.MachineId">Back to Machine Details</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
